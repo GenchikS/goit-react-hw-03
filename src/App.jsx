@@ -9,16 +9,18 @@ function App() {
   const [inputValue, setInputValue] = useState(""); //  стан для пошуку
 
   // константа contactArr отримує масив contactUsers та далі передаємо в компонент ContactList
-  const [contactArr, setContactAdd] = useState(() => {
+  const [contactArr, setContactAdd] = useState(()=>{
     const contactArrStorage = window.localStorage.getItem("save-contact");
-    if (contactArrStorage.length > 2) {
-      console.log("contactArrStorage.length", contactArrStorage.length);
-      return JSON.parse(contactArrStorage);
+    const contactUsersParse = JSON.parse(contactArrStorage);
+    if (contactUsersParse.length > 0) {
+      // console.log("contactArrStorage.length", contactArrStorage.length);
+      return contactUsersParse;
     }
-    console.log("contactArrStorage.length", contactArrStorage);
-    return contactUsersStart;
-  });
-
+    // console.log("contactArrStorage.length", contactArrStorage);
+     return contactUsersStart ;
+   });
+  
+  
   useEffect(() => {
     window.localStorage.setItem("save-contact", JSON.stringify(contactArr));
   }, [contactArr]);
