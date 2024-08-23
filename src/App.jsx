@@ -12,13 +12,15 @@ function App() {
   const [contactArr, setContactAdd] = useState(() => {
     const contactArrStorage = window.localStorage.getItem("save-contact");
     const contactUsersParse = JSON.parse(contactArrStorage);
-    if (contactUsersParse !== null) {
-      // console.log("contactArrStorage.length", contactArrStorage.length);
-      return contactUsersParse;
-    }
-    // console.log("contactArrStorage.length", contactArrStorage);
+    { contactUsersParse !== null && contactUsersParse }
     return contactUsersStart;
-  });
+  })
+      // console.log("contactArrStorage.length", contactArrStorage.length);
+      // return contactUsersParse;
+    // }
+    // console.log("contactArrStorage.length", contactArrStorage);
+    // return contactUsersStart;
+  // });
 
   useEffect(() => {
     window.localStorage.setItem("save-contact", JSON.stringify(contactArr));
