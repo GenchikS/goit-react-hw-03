@@ -3,24 +3,23 @@ import "./App.css";
 import ContactForm from "./components/contactform/contactform";
 import ContactList from "./components/contactlist/contactlist";
 import Searchbox from "./components/searchbox/searchbox";
-import contactUsersStart from "./components/contactlist/contactlist.json";
+import contactUsersStart from "./contactlist.json";
 
 function App() {
   const [inputValue, setInputValue] = useState(""); //  стан для пошуку
 
   // константа contactArr отримує масив contactUsers та далі передаємо в компонент ContactList
-  const [contactArr, setContactAdd] = useState(()=>{
+  const [contactArr, setContactAdd] = useState(() => {
     const contactArrStorage = window.localStorage.getItem("save-contact");
     const contactUsersParse = JSON.parse(contactArrStorage);
-    if (contactUsersParse.length > 0) {
+    if (contactUsersParse !== null) {
       // console.log("contactArrStorage.length", contactArrStorage.length);
       return contactUsersParse;
     }
     // console.log("contactArrStorage.length", contactArrStorage);
-     return contactUsersStart ;
-   });
-  
-  
+    return contactUsersStart;
+  });
+
   useEffect(() => {
     window.localStorage.setItem("save-contact", JSON.stringify(contactArr));
   }, [contactArr]);
