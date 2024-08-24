@@ -12,10 +12,6 @@ function App() {
   const [contactArr, setContactAdd] = useState(() => {
     const contactArrStorage = window.localStorage.getItem("save-contact");
     const contactUsersParse = JSON.parse(contactArrStorage);
-
-    // { contactUsersParse !== null && contactUsersParse }
-    // return contactUsersStart;
-
     return contactUsersParse !== null ? contactUsersParse : contactStart
   })
  
