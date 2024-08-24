@@ -3,7 +3,7 @@ import "./App.css";
 import ContactForm from "./components/contactform/contactform";
 import ContactList from "./components/contactlist/contactlist";
 import Searchbox from "./components/searchbox/searchbox";
-import contactUsersStart from "./contactlist.json";
+import contactStart from "./contactlist.json";
 
 function App() {
   const [inputValue, setInputValue] = useState(""); //  стан для пошуку
@@ -12,16 +12,13 @@ function App() {
   const [contactArr, setContactAdd] = useState(() => {
     const contactArrStorage = window.localStorage.getItem("save-contact");
     const contactUsersParse = JSON.parse(contactArrStorage);
-    { contactUsersParse !== null && contactUsersParse }
-    return contactUsersStart;
-  })
-      // console.log("contactArrStorage.length", contactArrStorage.length);
-      // return contactUsersParse;
-    // }
-    // console.log("contactArrStorage.length", contactArrStorage);
-    // return contactUsersStart;
-  // });
 
+    // { contactUsersParse !== null && contactUsersParse }
+    // return contactUsersStart;
+
+    return contactUsersParse !== null ? contactUsersParse : contactStart
+  })
+ 
   useEffect(() => {
     window.localStorage.setItem("save-contact", JSON.stringify(contactArr));
   }, [contactArr]);
